@@ -172,14 +172,7 @@ ppl7::Array DNSSender::getQueryRates(const ppl7::String& QueryRates)
     if (QueryRates.isEmpty()) {
         rates.add("0");
     } else {
-        ppl7::Array matches;
-        if (QueryRates.pregMatch("/^([0-9]+)-([0-9]+),([0-9]+)$", matches)) {
-            for (ppluint64 i = matches[1].toUnsignedInt64(); i <= matches[2].toUnsignedInt64(); i += matches[3].toUnsignedInt64()) {
-                rates.addf("%llu", i);
-            }
-        } else {
-            rates.explode(QueryRates, ",");
-        }
+        rates.explode(QueryRates, ",");
     }
     return rates;
 }
